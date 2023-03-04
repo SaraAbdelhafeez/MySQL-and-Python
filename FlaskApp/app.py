@@ -1,6 +1,6 @@
 from flask import Flask, render_template, json, request, redirect, session
-from flask.ext.mysql import MySQL
-from werkzeug import generate_password_hash, check_password_hash
+from flask_mysqldb import MySQL
+# from werkzeug import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -42,7 +42,7 @@ def signUp():
 
         data = cursor.fetchall()
 
-        if len(data) is 0:
+        if len(data) == 0:
             conn.commit()
             return json.dumps({'message':'User created successfully !'})
         else:
@@ -109,7 +109,7 @@ def addWish():
             cursor.callproc('sp_addWish',(_title,_description,_user))
             data = cursor.fetchall()
  
-            if len(data) is 0:
+            if len(data) == 0:
                 conn.commit()
                 return redirect('/userHome')
             else:
@@ -150,4 +150,4 @@ def getWish():
         return render_template('error.html', error = str(e))
 
 if __name__ == "__main__":
-    app.run(port=5002,debug=True)
+    app.run(host="0.0.0.0",port=5002,debug=True)
