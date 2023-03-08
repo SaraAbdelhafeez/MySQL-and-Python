@@ -14,7 +14,7 @@ USE BucketList;
 
 INSERT INTO tbl_user
 values
-(10,'ahmed','ahmed','ahmed');
+(1,'ahmed','ahmed@gmail.com','ahmed');
 
 
 DELIMITER $$
