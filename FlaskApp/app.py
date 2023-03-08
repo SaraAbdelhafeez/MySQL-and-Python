@@ -1,5 +1,9 @@
-from flask import Flask, render_template, json, request, redirect, session
-from flask_mysqldb import MySQL
+from flask import Flask, render_template, json, request, redirect, session, jsonify
+from flaskext.mysql import MySQL
+# from db import mysql
+import pymysql
+import mysql.connector
+
 # from werkzeug import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -8,9 +12,10 @@ mysql = MySQL()
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'UyNh4eve@6514'
-app.config['MYSQL_DATABASE_DB'] = 'bucketlist'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_DB'] = 'BucketList'
+app.config['MYSQL_DATABASE_HOST'] = 'db'
+
 mysql.init_app(app)
 
 # set a secret key for the session
@@ -19,6 +24,7 @@ app.secret_key = 'why would I tell you my secret key?'
 @app.route("/")
 def main():
     return render_template('index.html')
+
 
 @app.route('/showSignUp')
 def showSignUp():
@@ -151,3 +157,42 @@ def getWish():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=5002,debug=True)
+
+
+###########################################s
+# from flask import Flask, render_template, json, request, redirect, session
+# from flask_mysqldb import MySQL
+# from typing import List, Dict
+
+# import mysql.connector
+# from werkzeug import generate_password_hash, check_password_hash
+
+# app = Flask(__name__)
+
+# mysql = MySQL()
+# config = {
+#         'user': 'root',
+#         'password': 'UyNh4eve@6514',
+#         'host': 'localhost',
+#         'port': '3306',
+#         'database': 'BucketList'
+#     }
+
+# def tbl_user() -> List[Dict]:
+    
+    
+
+#     # return results
+
+# @app.route('/')
+# def index() -> str:
+#     connection = mysql.connector.connect(**config)
+#     cursor = connection.cursor()
+#     cursor.execute('SELECT * FROM tbl_user')
+#     results = [{user_name: user_username} for (user_name, user_username) in cursor]
+#     cursor.close()
+#     connection.close()
+#     return json.dumps({'tbl_user': tbl_user()})
+
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0',port=5002)
