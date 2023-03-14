@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, request, redirect, session, json
 from flaskext.mysql import MySQL
 import pymysql
 import mysql.connector
+import os
 
 # from werkzeug import generate_password_hash, check_password_hash
 
@@ -10,10 +11,10 @@ app = Flask(__name__)
 mysql = MySQL()
 
 # MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
-app.config['MYSQL_DATABASE_DB'] = 'BucketList'
-app.config['MYSQL_DATABASE_HOST'] = 'db'
+app.config['MYSQL_DATABASE_USER'] = os.getenv('db_root_user')
+app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv('db_root_password')
+app.config['MYSQL_DATABASE_DB'] = os.getenv('db_mysql')
+app.config['MYSQL_DATABASE_HOST'] = os.getenv('db_mysql_host')
 
 mysql.init_app(app)
 
