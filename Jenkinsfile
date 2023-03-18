@@ -21,7 +21,7 @@ pipeline {
                     sh 'docker push 524041749761.dkr.ecr.us-east-1.amazonaws.com/flask-app:latest'
                     sh 'docker push 524041749761.dkr.ecr.us-east-1.amazonaws.com/mysql-db:latest'
                     sh 'echo "build is done!"'
-                    sh 'echo "bye"'
+                   
                 }
             }
         }
